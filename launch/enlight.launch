@@ -1,0 +1,23 @@
+<launch>
+	<arg name="image_topic_in" default="base_link" />
+	<arg name="modelet_manager" default="nodelet_manager" />
+	
+	<node pkg="nodelet" type="nodelet" name="image_enhancement_4clahe" args="load image_enhancement/Clahe $(arg nodelet_manager)">
+	  	<param name="subscribe_topic" type="string" value="$(arg image_topic_in)" />
+	  	<param name="publish_topic" type="string" value="$(arg image_in)_clahe" />
+	  	<param name="cliplimit"  type="double" value="4" />
+	</node>
+  
+	<node pkg="nodelet" type="nodelet" name="image_enhancement_4gamma" args="load image_enhancement/Gamma $(arg nodelet_manager)">
+	  	<param name="subscribe_topic" type="string" value="$(arg image_topic_in)" />
+	  	<param name="publish_topic" type="string" value="$(arg image_in)_gamma" />
+	  	<param name="gamma"  type="double" value="2.2" />
+	</node>
+  
+	<node pkg="nodelet" type="nodelet" name="image_enhancement_4brightness" args="load image_enhancement/Brightness $(arg nodelet_manager)">
+	  	<param name="subscribe_topic" type="string" value="$(arg image_topic_in)" />
+	  	<param name="publish_topic" type="string" value="$(arg image_in)_brightness" />
+	  	<param name="alpha"  type="double" value="4" />
+	  	<param name="beta"   type="double" value="5" />
+	</node>  
+</launch>
