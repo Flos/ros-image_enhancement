@@ -29,10 +29,10 @@
 #include <dynamic_reconfigure/server.h>
 #include <image_enhancement/gammaConfig.h>
 
-namespace image_cloud {
+namespace image_enhancement {
 
 class Gamma : public nodelet::Nodelet {
-	typedef image_cloud::gammaConfig Config;
+	typedef image_enhancement::gammaConfig Config;
 	typedef dynamic_reconfigure::Server<Config> ReconfigureServer;
 public:
 	virtual void onInit();

@@ -29,10 +29,10 @@
 #include <dynamic_reconfigure/server.h>
 #include <image_enhancement/claheConfig.h>
 
-namespace image_cloud {
+namespace image_enhancement {
 
 class Clahe : public nodelet::Nodelet {
-	typedef image_cloud::claheConfig Config;
+	typedef image_enhancement::claheConfig Config;
 	typedef dynamic_reconfigure::Server<Config> ReconfigureServer;
 public:
 	virtual void onInit();

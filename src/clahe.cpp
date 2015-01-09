@@ -2,9 +2,9 @@
 #include <pluginlib/class_list_macros.h>
 
 // watch the capitalization carefully
-PLUGINLIB_DECLARE_CLASS(image_cloud, Clahe, image_cloud::Clahe, nodelet::Nodelet)
+PLUGINLIB_DECLARE_CLASS(image_enhancement, Clahe, image_enhancement::Clahe, nodelet::Nodelet)
 
-namespace image_cloud {
+namespace image_enhancement {
 
 void
 Clahe::onInit() {

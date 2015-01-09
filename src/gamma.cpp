@@ -2,9 +2,9 @@
 #include <pluginlib/class_list_macros.h>
 
 // watch the capitalization carefully
-PLUGINLIB_DECLARE_CLASS(image_cloud, Gamma, image_cloud::Gamma, nodelet::Nodelet)
+PLUGINLIB_DECLARE_CLASS(image_enhancement, Gamma, image_enhancement::Gamma, nodelet::Nodelet)
 
-namespace image_cloud {
+namespace image_enhancement {
 
 void
 Gamma::onInit() {

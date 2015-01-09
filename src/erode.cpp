@@ -9,9 +9,9 @@
 #include <pluginlib/class_list_macros.h>
 
 // watch the capitalization carefully
-PLUGINLIB_DECLARE_CLASS(image_cloud, Erode, image_cloud::Erode, nodelet::Nodelet)
+PLUGINLIB_DECLARE_CLASS(image_enhancement, Erode, image_enhancement::Erode, nodelet::Nodelet)
 
-namespace image_cloud {
+namespace image_enhancement {
 
 void
 Erode::onInit() {

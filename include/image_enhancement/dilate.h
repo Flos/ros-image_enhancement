@@ -29,10 +29,10 @@
 #include <dynamic_reconfigure/server.h>
 #include <image_enhancement/dilateConfig.h>
 
-namespace image_cloud {
+namespace image_enhancement {
 
 class Dilate : public nodelet::Nodelet {
-	typedef image_cloud::dilateConfig Config;
+	typedef image_enhancement::dilateConfig Config;
 	typedef dynamic_reconfigure::Server<Config> ReconfigureServer;
 public:
 	Dilate();

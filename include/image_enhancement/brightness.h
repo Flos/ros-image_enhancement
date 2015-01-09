@@ -29,10 +29,10 @@
 #include <dynamic_reconfigure/server.h>
 #include <image_enhancement/brightnessConfig.h>
 
-namespace image_cloud {
+namespace image_enhancement {
 
 class Brightness : public nodelet::Nodelet {
-	typedef image_cloud::brightnessConfig Config;
+	typedef image_enhancement::brightnessConfig Config;
 	typedef dynamic_reconfigure::Server<Config> ReconfigureServer;
 public:
 	virtual void onInit();

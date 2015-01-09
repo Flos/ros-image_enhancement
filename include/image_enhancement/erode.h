@@ -29,10 +29,10 @@
 #include <dynamic_reconfigure/server.h>
 #include <image_enhancement/erodeConfig.h>
 
-namespace image_cloud {
+namespace image_enhancement {
 
 class Erode : public nodelet::Nodelet {
-	typedef image_cloud::erodeConfig Config;
+	typedef image_enhancement::erodeConfig Config;
 	typedef dynamic_reconfigure::Server<Config> ReconfigureServer;
 public:
 	Erode();

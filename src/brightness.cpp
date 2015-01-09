@@ -2,9 +2,9 @@
 #include <pluginlib/class_list_macros.h>
 
 // watch the capitalization carefully
-PLUGINLIB_DECLARE_CLASS(image_cloud, Brightness, image_cloud::Brightness, nodelet::Nodelet)
+PLUGINLIB_DECLARE_CLASS(image_enhancement, Brightness, image_enhancement::Brightness, nodelet::Nodelet)
 
-namespace image_cloud {
+namespace image_enhancement {
 
 void
 Brightness::onInit() {

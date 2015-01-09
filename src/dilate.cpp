@@ -9,9 +9,9 @@
 #include <pluginlib/class_list_macros.h>
 
 // watch the capitalization carefully
-PLUGINLIB_DECLARE_CLASS(image_cloud, Dilate, image_cloud::Dilate, nodelet::Nodelet)
+PLUGINLIB_DECLARE_CLASS(image_enhancement, Dilate, image_enhancement::Dilate, nodelet::Nodelet)
 
-namespace image_cloud {
+namespace image_enhancement {
 
 void
 Dilate::onInit() {
