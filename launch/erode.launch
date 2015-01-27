@@ -1,0 +1,15 @@
+<launch>
+	<arg name="name" 				default="erode" />
+	<arg name="image_topic_in" 	/>
+	<arg name="image_topic_out"  	default="$(arg image_topic_in)_$(arg name)" />
+	<arg name="nodelet_manager" 	default="nodelet_manager" />
+	<arg name="erosion_size"		default="1" />
+	<arg name="element_form"		default="0" />
+	
+	<node pkg="nodelet" type="nodelet" name="$(arg name)" args="load image_enhancement/Erode $(arg nodelet_manager)">
+	  	<param name="subscribe_topic" 	type="string" 	value="$(arg image_topic_in)" />
+	  	<param name="publish_topic" 	type="string" 	value="$(arg image_topic_out)" />
+	  	<param name="erosion_size"  	type="int" 	value="$(arg erosion_size)" />
+	  	<param name="element_form"  	type="int" 	value="$(arg element_form)" />
+	</node>
+</launch>

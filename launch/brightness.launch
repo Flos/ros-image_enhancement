@@ -1,0 +1,15 @@
+<launch>
+	<arg name="name" 				default="brightness" />
+	<arg name="image_topic_in" 	/>
+	<arg name="image_topic_out"  	default="$(arg image_in)_$(arg name)" />
+	<arg name="nodelet_manager" 	default="nodelet_manager" />
+	<arg name="alpha"				default="4" />
+	<arg name="beta"				default="0" />
+	
+	<node pkg="nodelet" type="nodelet" name="$(arg name)" args="load image_enhancement/Brightness $(arg nodelet_manager)">
+	  	<param name="subscribe_topic" 	type="string" 	value="$(arg image_topic_in)" />
+	  	<param name="publish_topic" 	type="string" 	value="$(arg image_topic_out)" />
+	  	<param name="alpha"  			type="double" 	value="$(arg alpha)" />
+	  	<param name="beta"  			type="double" 	value="$(arg beta)" />
+	</node>
+</launch>

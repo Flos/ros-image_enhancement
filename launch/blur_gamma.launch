@@ -1,0 +1,23 @@
+<launch>
+	<arg name="image_topic_in"  />
+	<arg name="image_topic_out" 	default="$(arg image_topic_in)_blur_gamma" />
+	<arg name="nodelet_manager" 	default="nodelet_manager" />
+	<arg name="camera"				default="0" />
+	<arg name="gamma"				default="2.2" />
+	
+	<include file="$(find image_enhancement)/launch/blur.launch" >
+  		<arg name="name" 					value="image$(arg camera)_blur" />
+		<arg name="image_topic_in"			value="$(arg image_topic_in)" />
+		<arg name="image_topic_out" 		value="$(arg image_topic_in)_blur" />
+		<arg name="nodelet_manager" 		value="$(arg nodelet_manager)" />
+  	</include>
+	
+	<include file="$(find image_enhancement)/launch/gamma.launch" >
+  		<arg name="name" 					value="image$(arg camera)_gamma" />
+		<arg name="image_topic_in"			value="$(arg image_topic_in)_blur" />
+		<arg name="image_topic_out" 		value="$(arg image_topic_out)" />
+		<arg name="nodelet_manager" 		value="$(arg nodelet_manager)" />
+		<arg name="gamma"					value="$(arg gamma)" />
+  	</include>
+  		  
+</launch>

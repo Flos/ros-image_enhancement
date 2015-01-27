@@ -1,0 +1,15 @@
+<launch>
+	<arg name="name" 				default="blur" />
+	<arg name="image_topic_in" 	/>
+	<arg name="image_topic_out"  	default="$(arg image_topic_in)_$(arg name)" />
+	<arg name="nodelet_manager" 	default="nodelet_manager" />
+	<arg name="kernel_size"			default="5" />
+	<arg name="filter"				default="0" />
+	
+	<node pkg="nodelet" type="nodelet" name="$(arg name)" args="load image_enhancement/Blur $(arg nodelet_manager)">
+	  	<param name="subscribe_topic" 	type="string" 	value="$(arg image_topic_in)" />
+	  	<param name="publish_topic" 	type="string" 	value="$(arg image_topic_out)" />
+	  	<param name="kernel_size"  		type="int" 		value="$(arg kernel_size)" />
+	  	<param name="filter"  			type="int"	 	value="$(arg filter)" />
+	</node>
+</launch>

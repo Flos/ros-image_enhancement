@@ -1,0 +1,15 @@
+<launch>
+	<arg name="name" 				default="dilation" />
+	<arg name="image_topic_in" 	/>
+	<arg name="image_topic_out"  	default="$(arg image_topic_in)_$(arg name)" />
+	<arg name="nodelet_manager" 	default="nodelet_manager" />
+	<arg name="dilation_size"		default="1" />
+	<arg name="element_form"		default="0" />
+	
+	<node pkg="nodelet" type="nodelet" name="$(arg name)" args="load image_enhancement/Dilation $(arg nodelet_manager)">
+	  	<param name="subscribe_topic" 	type="string" 	value="$(arg image_topic_in)" />
+	  	<param name="publish_topic" 	type="string" 	value="$(arg image_topic_out)" />
+	  	<param name="dilation_size"  	type="double" 	value="$(arg dilation_size)" />
+	  	<param name="element_form"  	type="double" 	value="$(arg element_form)" />
+	</node>
+</launch>

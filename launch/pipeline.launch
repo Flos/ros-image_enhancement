@@ -1,28 +1,37 @@
 <launch>
-	<arg name="image_topic_in" default="/camera" />
-	<arg name="image_topic_out" default="$(arg image_topic_in)/pipelined" />
-	<arg name="modelet_manager" default="nodelet_manager" />
+	<arg name="image_topic_in"  />
+	<arg name="image_topic_out" 	default="$(arg image_topic_in)/pipelined" />
+	<arg name="nodelet_manager" 	default="nodelet_manager" />
 	
-	<node pkg="nodelet" type="nodelet" name="image_enhancement_blur" args="load image_enhancement/Blur $(arg nodelet_manager)">
-	  	<param name="subscribe_topic" type="string" value="$(arg image_topic_in)" />
-	  	<param name="publish_topic" type="string" value="$(arg image_topic_in)_blur" />
-	  	<param name="filter"  type="int" value="2" />
-	  	<param name="kernel"  type="int" value="13" />
-	</node>
+	<include file="$(find image_enhancement)/launch/blur.launch" >
+  		<arg name="name" 					value="image_enhancement_blur" />
+		<arg name="image_topic_in"			value="$(arg image_topic_in) />
+		<arg name="image_topic_out" 		value="$(arg image_topic_in)_blur" />
+		<arg name="nodelet_manager" 		value="$(arg nodelet_manager)" />
+  	</include>
 	
-	<node pkg="nodelet" type="nodelet" name="image_enhancement_gamma" args="load image_enhancement/Gamma $(arg nodelet_manager)">
-	  	<param name="subscribe_topic" type="string" value="$(arg image_topic_in)_blur" />
-	  	<param name="publish_topic" type="string" value="$(arg image_topic_in)_blur_gamma" />
-	  	<param name="gamma"  type="double" value="2.2" />
-	</node>
-	
-	<node pkg="nodelet" type="nodelet" name="image_enhancement_dilate" args="load image_enhancement/Dilate $(arg nodelet_manager)">
-	  	<param name="subscribe_topic" 	value="$(arg image_topic_in)_blur_gamma" />
-	  	<param name="publish_topic" 	value="$(arg image_topic_in)_blur_gamma_dilate" />
-	</node>
+	<include file="$(find image_enhancement)/launch/gamma.launch" >
+  		<arg name="name" 					value="image_enhancement_gamma" />
+		<arg name="image_topic_in"			value="$(arg image_topic_in)_blur" />
+		<arg name="image_topic_out" 		value="$(arg image_topic_in)_blur_gamma" />
+		<arg name="nodelet_manager" 		value="$(arg nodelet_manager)" />
+		<arg name="gamma"					value="2.2" />
+  	</include>
+  	
+  	<include file="$(find image_enhancement)/launch/dilate.launch" >
+  		<arg name="name" 					value="image_enhancement_dilate" />
+		<arg name="image_topic_in"			value="$(arg image_topic_in)_blur_gamma" />
+		<arg name="image_topic_out" 		value="$(arg image_topic_in)_blur_gamma_dilate" />
+		<arg name="nodelet_manager" 		value="$(arg nodelet_manager)" />
+		<arg name="dilation_size"			value="1" />
+  	</include>
+  	
+  	<include file="$(find image_enhancement)/launch/erode.launch" >
+  		<arg name="name" 					value="image_enhancement_erode" />
+		<arg name="image_topic_in"			value="$(arg image_topic_in)_blur_gamma_dilate" />
+		<arg name="image_topic_out" 		value="$(arg image_topic_out)" />
+		<arg name="nodelet_manager" 		value="$(arg nodelet_manager)" />
+		<arg name="erosion_size"			value="1" />
+  	</include>
 	  
-	<node pkg="nodelet" type="nodelet" name="image_enhancement_erode" args="load image_enhancement/Erode $(arg nodelet_manager)">
-	  	<param name="subscribe_topic" 	value="$(arg image_topic_in)_blur_gamma_dilate" />
-	  	<param name="publish_topic" 	value="$(arg image_topic_out)" />
-	</node>
 </launch>

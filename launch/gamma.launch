@@ -1,0 +1,13 @@
+<launch>
+	<arg name="name" 				default="gamma" />
+	<arg name="image_topic_in" 	/>
+	<arg name="image_topic_out"  	default="$(arg image_topic_in)_$(arg name)" />
+	<arg name="nodelet_manager" 	default="nodelet_manager" />
+	<arg name="gamma"				default="2.2" />
+	
+	<node pkg="nodelet" type="nodelet" name="$(arg name)" args="load image_enhancement/Gamma $(arg nodelet_manager)">
+	  	<param name="subscribe_topic" 	type="string" 	value="$(arg image_topic_in)" />
+	  	<param name="publish_topic" 	type="string" 	value="$(arg image_topic_out)" />
+	  	<param name="gamma"  			type="double" 	value="$(arg gamma)" />
+	</node>
+</launch>

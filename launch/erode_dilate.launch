@@ -1,0 +1,25 @@
+<launch>
+  <node pkg="nodelet" type="nodelet" name="dilate_erode_manager" args="manager" output="screen">
+  	<param name="num_worker_threads" type="int" value="4" />
+  </node>
+  
+  <node pkg="nodelet" type="nodelet" name="dilate_first" args="load image_enhancement/Dilate dilate_erode_manager" output="screen">
+  	<param name="subscribe_topic" 	value="/ladybug5/camera4/image_color_rect" />
+  	<param name="publish_topic" 	value="/ladybug5/camera4/image_color_rect_dilate" />
+  </node>
+  
+  <node pkg="nodelet" type="nodelet" name="erode_first" args="load image_enhancement/Erode dilate_erode_manager" output="screen">
+  	<param name="subscribe_topic" 	value="/ladybug5/camera4/image_color_rect" />
+  	<param name="publish_topic" 	value="/ladybug5/camera4/image_color_rect_erode" />
+  </node>
+  
+  <node pkg="nodelet" type="nodelet" name="dilate_second" args="load image_enhancement/Dilate dilate_erode_manager" output="screen">
+  	<param name="subscribe_topic" 	value="/ladybug5/camera4/image_color_rect_erode" />
+  	<param name="publish_topic" 	value="/ladybug5/camera4/image_color_rect_erode_dilate" />
+  </node>
+  
+  <node pkg="nodelet" type="nodelet" name="erode_second" args="load image_enhancement/Erode dilate_erode_manager" output="screen">
+  	<param name="subscribe_topic" 	value="/ladybug5/camera4/image_color_rect_dilate" />
+  	<param name="publish_topic" 	value="/ladybug5/camera4/image_color_rect_dilate_erode" />
+  </node>
+</launch>
